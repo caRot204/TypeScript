@@ -1,14 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Product } from '../../interfaces/products';
 
 
 const ListProduct = () => {
     const [productList, setProductList] = useState<Product[]>([]);
-    const nav = useNavigate()
     const fetchProducts = async () => {
-        const { data } = await axios.get('https://fakestoreapi.com/products');
+        const { data } = await axios.get('http://localhost:8009/');
         setProductList(data);
     };
 
@@ -16,21 +14,10 @@ const ListProduct = () => {
         fetchProducts();
     }, []);
 
-    console.log('result', productList);
+    // console.log('result', productList);
 
     return (
         <>
-            <nav className="gr">
-                <div className="max-w-screen-xl px-4 py-3 mx-auto">
-                    <div className="flex items-center">
-                        <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-                            <li>
-                                <a onClick={() => { nav(`/add`) }} className="text-gray-900 dark:text-white hover:underline">Thêm sản phẩm</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
             <div className="flex flex-wrap gap-6 ">
                 {productList.map((product, index) => (
                     <div

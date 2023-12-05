@@ -1,8 +1,15 @@
-export interface Product {
-    id: number;
-    title: string,
-    image: string,
-    desc: string,
-    rating: string,
-    price: number
-}
+import { Category } from "./categories";
+
+export type Product = {
+  _id: string;
+  title: string;
+  image: string;
+  category: Category;
+  description: string;
+  price: number;
+  rate: number;
+};
+
+export type ProductFormParams = Omit<Product, "_id" | "category"> & {
+  category: string;
+};
